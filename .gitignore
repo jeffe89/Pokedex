@@ -1,0 +1,5 @@
+#Ignore the executable
+pokedex
+
+#Ignore the Repl Log
+repl.log
