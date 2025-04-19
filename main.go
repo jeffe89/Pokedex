@@ -367,7 +367,7 @@ func commandMapb(cfg *Config, args ...string) error {
 func commandExplore(cfg *Config, location ...string) error {
 
 	// Check if a location area name was provided
-	if len(location) == 0 {
+	if len(location) != 1 {
 		return errors.New("you must provide a location area name")
 	}
 
@@ -479,7 +479,7 @@ func fetchPokemonFromAPI(location string) ([]string, error) {
 func commandCatch(cfg *Config, pokeName ...string) error {
 
 	// Check if Pokemon name was provided in argument
-	if len(pokeName) < 1 {
+	if len(pokeName) != 1 {
 		return fmt.Errorf("please specify the name of the Pokemon to catch")
 	}
 
@@ -535,7 +535,7 @@ func commandCatch(cfg *Config, pokeName ...string) error {
 func commandInspect(cfg *Config, pokeName ...string) error {
 
 	// Check if Pokemon name was provided in argument
-	if len(pokeName) < 1 {
+	if len(pokeName) != 1 {
 		return fmt.Errorf("please specify the name of the Pokemon to inspect")
 	}
 
@@ -558,8 +558,8 @@ func commandInspect(cfg *Config, pokeName ...string) error {
 	}
 
 	fmt.Println("Types:")
-	for _, typ := range pokemon.Types {
-		fmt.Printf("  - %s\n", typ.Type.Name)
+	for _, typeInfo := range pokemon.Types {
+		fmt.Printf("  - %s\n", typeInfo.Type.Name)
 	}
 
 	return nil
