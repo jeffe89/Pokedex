@@ -118,6 +118,11 @@ func main() {
 			description: "Inspect Pokemon details",
 			callback:    commandInspect,
 		},
+		"pokedex": {
+			name:        "pokedex",
+			description: "Display all Pokemon found in Pokedex",
+			callback:    commandPokedex,
+		},
 	}
 
 	// Create new scanner for user input
@@ -555,6 +560,24 @@ func commandInspect(cfg *Config, pokeName ...string) error {
 	fmt.Println("Types:")
 	for _, typ := range pokemon.Types {
 		fmt.Printf("  - %s\n", typ.Type.Name)
+	}
+
+	return nil
+}
+
+// Function to handle `pokedex` command
+func commandPokedex(cfg *Config, args ...string) error {
+
+	// If caughtPokemon map is empty
+	if len(caughtPokemon) == 0 {
+		fmt.Println("You have not caught any Pokemon yet")
+		return nil
+	}
+
+	// Print the names of all Pokemon in Pokedex
+	fmt.Println("Your Pokedex:")
+	for _, pokemon := range caughtPokemon {
+		fmt.Printf(" - %s\n", pokemon.Name)
 	}
 
 	return nil
